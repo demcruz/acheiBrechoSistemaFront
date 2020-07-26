@@ -1,24 +1,56 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
+
+import './style.css'
 import logo from '../../assets/aceiBrecho1.png'
+
+
 
 export default function ProdudoVandido() {
     return (
         <div>
+
             <nav>
-                <div class="nav-wrapper ">
+                <div className="nav-wrapper ">
                     <img src={logo} alt="logo" width="4%" />
                 </div>
             </nav>
 
-            <section class="container">
-                <div class="row">
-                    <div class="col s6 ">
-                        <h5 class="red-text text-lighten-2">Produtos Vendidos</h5>
+            
+            <div className="container center">
+                <h1>Tela em Construção</h1>
+                <Link to='/' className="red-text text-darken-2" href="index.html">   <p>Voltar para <br /> Tela inicial</p> </Link>
+            </div>
+
+        </div>
+
+
+    )
+}
+
+
+
+
+
+
+/*
+
+ <div>
+            <nav>
+                <div className="nav-wrapper ">
+                    <img src={logo} alt="logo" width="4%" />
+                </div>
+            </nav>
+
+            <section className="container">
+                <div className="row">
+                    <div className="col s6 ">
+                        <h5 className="red-text text-lighten-2">Produtos Vendidos</h5>
                     </div>
                 </div>
 
-                <table class="striped">
+                <table className="striped">
                     <thead>
                         <tr>
                             <th>Codigo do Produto</th>
@@ -38,7 +70,7 @@ export default function ProdudoVandido() {
                             <td>R$ 240,00</td>
                             <td>R$ 120,00</td>
                             <td>10 dias</td>
-                            <td><a class="waves-effect waves-light btn red">Pago</a></td>
+                            <td><a className="waves-effect waves-light btn red">Pago</a></td>
 
                         </tr>
                         <tr>
@@ -48,7 +80,7 @@ export default function ProdudoVandido() {
                             <td>R$ 240,00</td>
                             <td>R$ 120,00</td>
                             <td>13 dias</td>
-                            <td><a class="waves-effect waves-light btn red">Pago</a></td>
+                            <td><a className="waves-effect waves-light btn red">Pago</a></td>
 
                         </tr>
                         <tr>
@@ -58,12 +90,12 @@ export default function ProdudoVandido() {
                             <td>R$ 240,00</td>
                             <td>R$ 120,00</td>
                             <td>30 dias</td>
-                            <td><a class="waves-effect waves-light btn red">Pago</a></td>
+                            <td><a className="waves-effect waves-light btn red">Pago</a></td>
 
                         </tr>
                     </tbody>
                 </table>
             </section>
         </div>
-    )
-}
+
+*/

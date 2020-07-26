@@ -1,67 +1,81 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+import api from '../../services/api'
 import logo from '../../assets/aceiBrecho1.png'
 
 
 
 export default function Estoque() {
+
+    const [clientes, setClientes] = useState([])
+    const [produtos, setProdutos] = useState([])
+
+
+    useEffect(() => {
+        api.get('achei').then(res => {
+            setClientes(res.data)
+        })
+    }, [])
+
+
+    useEffect(() => {
+        api.get('achei').then(res => res.data.map(produto => {
+            setProdutos(produto.produtos)
+            console.log(produto.produtos)
+        }))
+    }, [])
+
+
+
+
     return (
         <div>
             <nav>
-                <div class="nav-wrapper ">
+                <div className="nav-wrapper ">
                     <img src={logo} alt="logo" width="4%" />
                 </div>
             </nav>
 
-            <section class="container">
-                <div class="row">
-                    <div class="col s6 ">
-                        <h5 class="red-text text-lighten-2">Lista de Produtos Cadastrados</h5>
+            <section className="container">
+                <div className="row">
+                    <div className="col s6 ">
+                        <h5 className="red-text text-lighten-2">Lista de Produtos Cadastrados</h5>
+                    </div>
+
+                    <div className="col s6 ">
+                    <Link to='/' className="red-text text-darken-2" href="index.html">   <p>Voltar para <br /> Tela inicial</p> </Link>
                     </div>
 
 
-
-
-                    <table class="striped">
+                    <table className="striped">
                         <thead>
                             <tr>
-                                <th>Codigo do Produto</th>
-                                <th>Nome do Produto</th>
                                 <th>Nome Cliente</th>
-                                <th>Item Preço</th>
-                                <th>Data de Cadastro</th>
+                                <th>Whats App</th>
+                                <th>Email</th>
+                                <th>produto</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr>
-                                <td>43543fefenf23424</td>
-                                <td>Camiseta T-Shirt</td>
-                                <td>Carol Cruz</td>
-                                <td>R$ 240,00</td>
-                                <td>18/07/2020</td>
-                                <td><a class="waves-effect waves-light btn red">Vendido</a></td>
-                                <td><a class="waves-effect waves-light btn red">Editar</a></td>
-                            </tr>
-                            <tr>
-                                <td>43543fefenf23424</td>
-                                <td>Camiseta T-Shirt</td>
-                                <td>Carol Cruz</td>
-                                <td>R$ 240,00</td>
-                                <td>18/07/2020</td>
-                                <td><a class="waves-effect waves-light btn red">Vendido</a></td>
-                                <td><a class="waves-effect waves-light btn red">Editar</a></td>
-                            </tr>
-                            <tr>
-                                <td>43543fefenf23424</td>
-                                <td>Camiseta T-Shirt</td>
-                                <td>Carol Cruz</td>
-                                <td>R$ 240,00</td>
-                                <td>18/07/2020</td>
-                                <td><a class="waves-effect waves-light btn red">Vendido</a></td>
-                                <td><a class="waves-effect waves-light btn red">Editar</a></td>
-                            </tr>
+                            {clientes.map((data, i) => (
+                                <tr key={i}>
+                                    <td>{data.nome + " " + data.sobreNome}</td>
+                                    <td>{data.whatsApp}</td>
+                                    <td>{data.email}</td>
+                                    <td>
+                                        {
+                                            data.produtos.map((datas, i) => (
+                                                <ul key={i}>
+                                                    <li>{` ${datas.nomeDescricao} ${datas.categoria}  ${datas.dataCadastro} `} </li>
+
+                                                </ul>
+
+                                            ))}
+                                    </td>
+
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
